@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.ipynb_checkpoints/
+.pytest_cache/
+
+# Data (do not commit raw datasets; check licence before redistributing)
+data/raw/
+*.zip
+kaggle.json
+
+# Model caches
+.cache/
+huggingface/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
