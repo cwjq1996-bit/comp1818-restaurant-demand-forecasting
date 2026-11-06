@@ -87,3 +87,16 @@ sample["air_store_id"] = sample["id"].str[:-11]
 print(sample["date"].min(), sample["date"].max())
 print(sample["date"].nunique(), sample["air_store_id"].nunique())
 print(sample["air_store_id"].isin(summary.index).sum())
+
+test_start, test_end = pd.Timestamp("2017-04-23"), pd.Timestamp("2017-05-31")
+in_test = dates[(dates["calendar_date"] >= test_start) & (dates["calendar_date"] <= test_end)]
+print(in_test[in_test["holiday_flg"] == 1]["calendar_date"].dt.date.tolist())
+
+w16 = dates[(dates["calendar_date"] >= "2016-04-23") & (dates["calendar_date"] <= "2016-05-31")]
+print(w16[w16["holiday_flg"] == 1]["calendar_date"].dt.date.tolist())
+
+old = summary[summary["first_day"] < "2016-04-01"].index
+print(len(old))
+
+gw = visits[visits["air_store_id"].isin(old) & (visits["visit_date"] >= "2016-04-25") & (visits["visit_date"] <= "2016-05-08")]
+print(gw.groupby("visit_date")["visitors"].mean())
