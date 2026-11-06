@@ -67,3 +67,23 @@ visits["weekday"] = visits["visit_date"].dt.day_name()
 by_day = visits.groupby("weekday")["visitors"].agg(["mean", "median", "count"])
 print(by_day)
 print(by_day["mean"].max() / by_day["mean"].min())
+store_info = pd.read_csv("data/raw/air_store_info.csv")
+print(store_info.head())
+print(len(store_info))
+print(store_info["air_genre_name"].value_counts())
+print(store_info["air_area_name"].nunique())
+
+dates = pd.read_csv("data/raw/date_info.csv", parse_dates=["calendar_date"])
+print(dates.head())
+print(dates["holiday_flg"].sum())
+print(dates[dates["holiday_flg"] == 1]["calendar_date"].dt.month.value_counts().sort_index())
+
+sample = pd.read_csv("data/raw/sample_submission.csv")
+print(sample.head())
+print(len(sample))
+
+sample["date"] = pd.to_datetime(sample["id"].str[-10:])
+sample["air_store_id"] = sample["id"].str[:-11]
+print(sample["date"].min(), sample["date"].max())
+print(sample["date"].nunique(), sample["air_store_id"].nunique())
+print(sample["air_store_id"].isin(summary.index).sum())
