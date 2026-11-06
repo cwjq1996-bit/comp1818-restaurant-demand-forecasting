@@ -100,3 +100,22 @@ print(len(old))
 
 gw = visits[visits["air_store_id"].isin(old) & (visits["visit_date"] >= "2016-04-25") & (visits["visit_date"] <= "2016-05-08")]
 print(gw.groupby("visit_date")["visitors"].mean())
+
+daily = gw.groupby("visit_date")["visitors"].mean().to_frame("mean_visitors")
+daily["weekday"] = daily.index.day_name()
+print(daily)
+
+n_open = gw.groupby("visit_date")["air_store_id"].nunique()
+print(n_open)
+
+pairs = [
+    ("2016-05-03", "2016-04-26"),
+    ("2016-05-04", "2016-04-27"),
+    ("2016-05-05", "2016-04-28"),
+    ("2016-04-29", "2016-05-06"),
+]
+for h, n in pairs:
+    hol = gw[gw["visit_date"] == h].set_index("air_store_id")["visitors"]
+    nor = gw[gw["visit_date"] == n].set_index("air_store_id")["visitors"]
+    both = pd.concat([hol, nor], axis=1, join="inner")
+    print(h, n, len(both), both.mean().round(2).tolist())
