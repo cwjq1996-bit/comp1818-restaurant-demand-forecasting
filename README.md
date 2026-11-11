@@ -49,6 +49,11 @@ TODO – list: trivial baselines, classical model(s), machine-learning model(s),
 ## 7. Evaluation
 
 TODO – train/test split (time-ordered), metrics used and why, number of rolling windows / seeds.
+
+
+## 8. Results
+
+TODO – final results table (copied from `results/`).
 ## Validation Results (39-Day Horizon)
 
 Strict chronological split evaluated from 2017-03-15 to 2017-04-22 (28,031 observations):
@@ -62,10 +67,6 @@ Strict chronological split evaluated from 2017-03-15 to 2017-04-22 (28,031 obser
 | **ETS (Holt-Winters)** | Statistical TS | **0.4864** | 7.3414 | 10.2325 | Top-10 active series (N=389) with additive weekly seasonality |
 
 ![Model Comparison](reports/figures/model_comparison.png)
-
-## 8. Results
-
-TODO – final results table (copied from `results/`).
 
 ## 9. References
 
