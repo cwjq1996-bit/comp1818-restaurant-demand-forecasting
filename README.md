@@ -51,6 +51,30 @@ mkdir -p data/raw
 # Download and unzip competition files
 kaggle competitions download -c recruit-restaurant-visitor-forecasting -p data/raw/
 unzip -o data/raw/recruit-restaurant-visitor-forecasting.zip -d data/raw/
+```
+
+## 4. Setup
+
+Tested with **Python 3.10+** (Python 3.14).
+
+```bash
+# Create and activate virtual environment
+python -m venv .venv
+# Windows (PowerShell):
+.venv\Scripts\Activate.ps1
+# macOS/Linux:
+source .venv/bin/activate
+
+# Install required dependencies
+pip install -r requirements.txt
+```
+```bash
+# Create raw data folder
+mkdir -p data/raw
+
+# Download and unzip competition files
+kaggle competitions download -c recruit-restaurant-visitor-forecasting -p data/raw/
+unzip -o data/raw/recruit-restaurant-visitor-forecasting.zip -d data/raw/
 
 
 
