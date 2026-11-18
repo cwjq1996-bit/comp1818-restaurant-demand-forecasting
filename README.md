@@ -23,13 +23,24 @@ notebooks/      # exploratory analysis
 results/        # metrics tables and figures produced by the code
 ```
 
-## 3. Data
+## 3. ### Dataset Information
+- **Dataset Name:** Recruit Restaurant Visitor Forecasting
+- **Source URL:** [https://www.kaggle.com/c/recruit-restaurant-visitor-forecasting/data](https://www.kaggle.com/c/recruit-restaurant-visitor-forecasting/data)
+- **Licence:** Competition data is provided by Recruit Holdings Co., Ltd. for educational and non-commercial research use under the official Kaggle Competition Rules.
+- **Date Range:** 
+  - Training set: 1 January 2016 – 22 April 2017 (252,108 visits across 829 restaurants)
+  - Test horizon: 23 April 2017 – 31 May 2017 (39-day prediction window across 821 restaurants)
 
-TODO – dataset name, source URL, licence, date range, how to obtain it.
+The raw data is not redistributed in this repository in compliance with competition licensing terms.
 
-The raw data is not redistributed in this repository. If the dataset licence does not permit redistribution, download it yourself using the steps below.
+### How to Obtain the Data
 
-TODO – exact download steps (and the Kaggle CLI command, if the Kaggle dataset is used).
+#### Option 1: Manual Download via Browser
+1. Log in to [Kaggle](https://www.kaggle.com) and navigate to the [Recruit Restaurant Visitor Forecasting](https://www.kaggle.com/c/recruit-restaurant-visitor-forecasting/data) competition page.
+2. Accept the competition rules on the **Rules** tab.
+3. Download the competition archive or individual CSV files (`air_visit_data.csv`, `date_info.csv`, `air_store_info.csv`, `sample_submission.csv`).
+4. Extract all files directly into the local project directory under:
+
 
 ## 4. Setup
 
