@@ -77,20 +77,6 @@ kaggle competitions download -c recruit-restaurant-visitor-forecasting -p data/r
 unzip -o data/raw/recruit-restaurant-visitor-forecasting.zip -d data/raw/
 
 
-
-
-
-## 4. Setup
-
-TODO – Python version, then:
-
-```bash
-python -m venv .venv
-# Windows (PowerShell): .venv\Scripts\Activate.ps1
-# macOS/Linux: source .venv/bin/activate
-pip install -r requirements.txt
-```
-
 ## 5. How to reproduce the results
 
 TODO – the exact commands, in order, that regenerate every table and figure in the report. A marker should be able to run these from a fresh clone with no debugging.
