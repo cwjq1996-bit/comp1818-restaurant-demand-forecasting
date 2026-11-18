@@ -22,7 +22,7 @@ notebooks/      # exploratory analysis
 results/        # metrics tables and figures produced by the code
 ```
 
-## 3. ### Dataset Information
+## 3. Dataset Information
 - **Dataset Name:** Recruit Restaurant Visitor Forecasting
 - **Source URL:** [https://www.kaggle.com/c/recruit-restaurant-visitor-forecasting/data](https://www.kaggle.com/c/recruit-restaurant-visitor-forecasting/data)
 - **Licence:** Competition data is provided by Recruit Holdings Co., Ltd. for educational and non-commercial research use under the official Kaggle Competition Rules.
