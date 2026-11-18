@@ -39,7 +39,21 @@ The raw data is not redistributed in this repository in compliance with competit
 1. Log in to [Kaggle](https://www.kaggle.com) and navigate to the [Recruit Restaurant Visitor Forecasting](https://www.kaggle.com/c/recruit-restaurant-visitor-forecasting/data) competition page.
 2. Accept the competition rules on the **Rules** tab.
 3. Download the competition archive or individual CSV files (`air_visit_data.csv`, `date_info.csv`, `air_store_info.csv`, `sample_submission.csv`).
-4. Extract all files directly into the local project directory under:
+4. Extract all files directly into the local project directory 
+
+#### Option 2: Using the Kaggle API CLI
+Ensure your `kaggle.json` API token is configured in `~/.kaggle/kaggle.json` (or `%USERPROFILE%\.kaggle\kaggle.json` on Windows), then run:
+
+```bash
+# Create raw data folder
+mkdir -p data/raw
+
+# Download and unzip competition files
+kaggle competitions download -c recruit-restaurant-visitor-forecasting -p data/raw/
+unzip -o data/raw/recruit-restaurant-visitor-forecasting.zip -d data/raw/
+
+
+
 
 
 ## 4. Setup
