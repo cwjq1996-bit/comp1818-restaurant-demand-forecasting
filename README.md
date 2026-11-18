@@ -4,9 +4,13 @@ Coursework repository for **COMP1818 Artificial Intelligence Applications** (Uni
 
 > Status: work in progress. Sections marked TODO are completed as the project progresses.
 
-## 1. Project summary
+## 1. Project Title
 
-TODO – one paragraph: the research question and what is being compared.
+Benchmarking Statistical, Machine Learning, and
+Seasonal Baseline Models for Restaurant Demand
+Forecasting under Irregular Trading Patterns
+
+
 
 ## 2. Repository layout
 
