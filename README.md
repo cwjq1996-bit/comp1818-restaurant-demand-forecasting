@@ -2,7 +2,6 @@
 
 Coursework repository for **COMP1818 Artificial Intelligence Applications** (University of Greenwich, 2026–27).
 
-> Status: work in progress. Sections marked TODO are completed as the project progresses.
 
 ## 1. Project Title
 
