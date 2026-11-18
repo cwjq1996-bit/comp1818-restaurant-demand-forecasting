@@ -74,26 +74,66 @@ mkdir -p data/raw
 
 # Download and unzip competition files
 kaggle competitions download -c recruit-restaurant-visitor-forecasting -p data/raw/
-unzip -o data/raw/recruit-restaurant-visitor-forecasting.zip -d data/raw/
+unzip -o data/raw/recruit-restaurant-visitor-forecasting.zip -d data/
+
+## 5. How to Reproduce the Results
+
+Run the scripts in order from the repository root:
+
+```bash
+# 1. Run exploratory data analysis (EDA)
+python -m notebooks.01_eda
+
+# 2. Evaluate chronological baselines
+python -m src.baseline
+
+# 3. Train and evaluate LightGBM model
+python -m src.train_lgbm
+
+# 4. Train and evaluate ETS seasonal benchmark (Top 10 stores)
+python -m src.train_ets
+
+# 5. Generate validation comparison figure
+python -m src.plot_results
+```
+
+The output figure is saved to `reports/figures/model_comparison.png`.
+
+## 6. Methods Compared
+
+- **Baselines:**
+  - *Store Overall Mean:* Historical static mean per restaurant.
+  - *Recent 14-Day Moving Average:* Short-term rolling average level prior to forecast cutoff.
+  - *Same-Weekday Historical Median:* Historical median conditioned on day-of-week per store to capture recurring weekly cyclicity.
+- **Machine Learning:**
+  - *LightGBM Regressor:* Gradient boosted decision trees trained on log-transformed visitors ($\ln(y+1)$) to directly optimize RMSLE, with calendar, holiday, and leakage-free store target statistics.
+- **Statistical Time Series:**
+  - *ETS (Holt-Winters):* Univariate exponential smoothing with additive trend and additive weekly seasonality ($\text{seasonal\_periods}=7$).
+
+## 7. Evaluation Protocol
+
+- **Split Strategy:** Strict chronological out-of-time split.
+- **Origin Date ($T_0$):** 14 March 2017.
+- **Validation Window:** 15 March 2017 – 22 April 2017 (exactly 39 days, matching the competition test horizon).
+- **Validation Sample:** Exactly $N = 28,031$ observed restaurant-days.
+- **Scoring Rule:** Models are evaluated strictly on observed trading days ($y_{i,t} > 0$); unobserved/closed days are omitted from loss computation rather than imputed as zero.
+- **Primary Metric:** Root Mean Squared Logarithmic Error (RMSLE). Secondary metrics: MAE and RMSE.
+
+## 8. Validation Results (39-Day Horizon)
+
+Strict chronological split evaluated from 15 March 2017 to 22 April 2017 ($N = 28,031$):
+
+| Model | Family | RMSLE $\downarrow$ | MAE $\downarrow$ | RMSE $\downarrow$ | Notes |
+|---|---|:---:|:---:|:---:|---|
+| **Store Overall Mean** | Baseline | 0.6362 | 9.1852 | 14.2497 | Historical average per store |
+| **Recent 14-Day Mean** | Baseline | 0.6236 | 9.0993 | 14.3582 | Moving average level |
+| **Same-Weekday Median** | Baseline | 0.5541 | 7.6723 | 12.7537 | Captures strong weekly cyclicity |
+| **LightGBM Regressor** | Machine Learning | **0.5535** | 7.9593 | 13.2568 | GBDT with calendar & holiday features |
+| **ETS (Holt-Winters)** | Statistical TS | **0.4864** | 7.3414 | 10.2325 | Top-10 active series ($N = 389$) |
+
+![Model Comparison](reports/figures/model_comparison.png)
 
 
-## 5. How to reproduce the results
-
-TODO – the exact commands, in order, that regenerate every table and figure in the report. A marker should be able to run these from a fresh clone with no debugging.
-
-## 6. Methods compared
-
-TODO – list: trivial baselines, classical model(s), machine-learning model(s), pretrained time-series model, and the extension.
-
-## 7. Evaluation
-
-TODO – train/test split (time-ordered), metrics used and why, number of rolling windows / seeds.
-
-
-## 8. Results
-
-TODO – final results table (copied from `results/`).
-## Validation Results (39-Day Horizon)
 
 Strict chronological split evaluated from 2017-03-15 to 2017-04-22 (28,031 observations):
 
