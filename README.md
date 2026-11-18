@@ -149,7 +149,10 @@ Strict chronological split evaluated from 2017-03-15 to 2017-04-22 (28,031 obser
 
 ## 9. References
 
-TODO – papers, datasets and libraries used.
+1. **Arab, I. & Benitez, R. (2025).** *Benchmarking Time Series Forecasting Models: From Statistical Techniques to Foundation Models in Real-World Applications.* arXiv preprint arXiv:2502.03395.
+2. **Hyndman, R. J. & Athanasopoulos, G. (2018).** *Forecasting: Principles and Practice* (2nd ed.). OTexts, Melbourne, Australia.
+3. **Ke, G., Meng, Q., Finley, T., Wang, T., Chen, W., Ma, W., Ye, Q., & Liu, T. Y. (2017).** *LightGBM: A Highly Efficient Gradient Boosting Decision Tree.* Advances in Neural Information Processing Systems (NeurIPS), 30, 3146–3154.
+4. **Recruit Holdings Co., Ltd. & Kaggle (2017).** *Recruit Restaurant Visitor Forecasting Competition.* [https://www.kaggle.com/c/recruit-restaurant-visitor-forecasting](https://www.kaggle.com/c/recruit-restaurant-visitor-forecasting).
 
 ## 10. Academic integrity
 
