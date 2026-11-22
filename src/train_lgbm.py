@@ -40,7 +40,6 @@ cutoff = pd.Timestamp("2017-03-14")
 val_end = pd.Timestamp("2017-04-22")
 
 train_mask = df["visit_date"] <= cutoff
-val_mask = (df["visit_date"] > cutoff) & (df["visit_date"] <= val_end)
 
 # Calculate store historical statistics strictly from training period
 store_stats = df[train_mask].groupby("air_store_id", observed=False)["target"].agg(
@@ -50,6 +49,10 @@ store_stats = df[train_mask].groupby("air_store_id", observed=False)["target"].a
 ).reset_index()
 
 df = df.merge(store_stats, on="air_store_id", how="left")
+
+# Re-compute masks after merge to ensure exact index alignment
+train_mask = df["visit_date"] <= cutoff
+val_mask = (df["visit_date"] > cutoff) & (df["visit_date"] <= val_end)
 
 # Features list
 feature_cols = [
