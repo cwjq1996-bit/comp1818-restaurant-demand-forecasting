@@ -1,6 +1,10 @@
+from pathlib import Path
 import pandas as pd
 
-visits = pd.read_csv("data/raw/air_visit_data.csv", parse_dates=["visit_date"])
+base_dir = Path(__file__).resolve().parents[1]
+data_dir = base_dir / "data" / "raw"
+
+visits = pd.read_csv(data_dir / "air_visit_data.csv", parse_dates=["visit_date"])
 print(visits.head())
 summary = visits.groupby("air_store_id").agg(
     n_rows=("visit_date", "count"),
@@ -17,15 +21,7 @@ summary["span_days"] = (summary["last_day"] - summary["first_day"]).dt.days + 1
 summary["missing_days"] = summary["span_days"] - summary["n_rows"]
 summary["missing_share"] = summary["missing_days"] / summary["span_days"]
 print(summary["missing_share"].describe())
-#one_id = "air_ba937bf13d40fb24"
-#one = visits[visits["air_store_id"] == one_id]
-#print(summary.loc[one_id])
-#print(len(one), one["visit_date"].min(), one["visit_date"].max())
-#full = pd.date_range(start=one["visit_date"].min(), end=one["visit_date"].max(), freq="D")
-#print(len(full))
-#missing = full.difference(one["visit_date"])
-#print(len(missing))
-#print(missing.day_name().value_counts())
+
 all_missing = []
 closed_rows = []
 for store_id, group in visits.groupby("air_store_id"):
@@ -41,7 +37,6 @@ for store_id, group in visits.groupby("air_store_id"):
         "top_day": counts.index[0],
         "top_share": counts.iloc[0] / counts.sum(),
     })
-all_missing = pd.DatetimeIndex(all_missing)
 all_missing = pd.DatetimeIndex(all_missing)
 print(len(all_missing), summary["missing_days"].sum())
 print(all_missing.day_name().value_counts())
@@ -67,18 +62,18 @@ visits["weekday"] = visits["visit_date"].dt.day_name()
 by_day = visits.groupby("weekday")["visitors"].agg(["mean", "median", "count"])
 print(by_day)
 print(by_day["mean"].max() / by_day["mean"].min())
-store_info = pd.read_csv("data/raw/air_store_info.csv")
+store_info = pd.read_csv(data_dir / "air_store_info.csv")
 print(store_info.head())
 print(len(store_info))
 print(store_info["air_genre_name"].value_counts())
 print(store_info["air_area_name"].nunique())
 
-dates = pd.read_csv("data/raw/date_info.csv", parse_dates=["calendar_date"])
+dates = pd.read_csv(data_dir / "date_info.csv", parse_dates=["calendar_date"])
 print(dates.head())
 print(dates["holiday_flg"].sum())
 print(dates[dates["holiday_flg"] == 1]["calendar_date"].dt.month.value_counts().sort_index())
 
-sample = pd.read_csv("data/raw/sample_submission.csv")
+sample = pd.read_csv(data_dir / "sample_submission.csv")
 print(sample.head())
 print(len(sample))
 
@@ -108,12 +103,7 @@ print(daily)
 n_open = gw.groupby("visit_date")["air_store_id"].nunique()
 print(n_open)
 
-pairs = [
-    ("2016-05-03", "2016-04-26"),
-    ("2016-05-04", "2016-04-27"),
-    ("2016-05-05", "2016-04-28"),
-    ("2016-04-29", "2016-05-06"),
-]
+pairs = [\n    ("2016-05-03", "2016-04-26"),\n    ("2016-05-04", "2016-04-27"),\n    ("2016-05-05", "2016-04-28"),\n    ("2016-04-29", "2016-05-06"),\n]
 for h, n in pairs:
     hol = gw[gw["visit_date"] == h].set_index("air_store_id")["visitors"]
     nor = gw[gw["visit_date"] == n].set_index("air_store_id")["visitors"]
