@@ -38,7 +38,7 @@ The raw data is not redistributed in this repository in compliance with competit
 1. Log in to [Kaggle](https://www.kaggle.com) and navigate to the [Recruit Restaurant Visitor Forecasting](https://www.kaggle.com/c/recruit-restaurant-visitor-forecasting/data) competition page.
 2. Accept the competition rules on the **Rules** tab.
 3. Download the competition archive or individual CSV files (`air_visit_data.csv`, `date_info.csv`, `air_store_info.csv`, `sample_submission.csv`).
-4. Extract all files directly into the local project directory 
+4. Extract all files into the `data/raw/` directory within the project folder (e.g., `data/raw/air_visit_data.csv`).
 
 #### Option 2: Using the Kaggle API CLI
 Ensure your `kaggle.json` API token is configured in `~/.kaggle/kaggle.json` (or `%USERPROFILE%\.kaggle\kaggle.json` on Windows), then run:
@@ -54,7 +54,7 @@ unzip -o data/raw/recruit-restaurant-visitor-forecasting.zip -d data/raw/
 
 ## 4. Setup
 
-Tested with **Python 3.10+** (Python 3.14).
+Tested with **Python 3.10 – 3.12** (Python 3.10+ supported).
 
 ```bash
 # Create and activate virtual environment
@@ -135,6 +135,3 @@ Strict chronological split evaluated from 15 March 2017 to 22 April 2017 ($N = 2
 ## 10. Academic Integrity
 
 Generative AI was used for preparation only (planning and explanation), in line with the module brief. All code, analysis and written work is the author's own. See the AI declaration in the submitted report.
-
-
-
